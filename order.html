@@ -12,14 +12,19 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script src="https://unpkg.com/feather-icons"></script>
+    <script src="assets/scripts/firebase.js"></script>
+    <script src="assets/scripts/firestore.js"></script>
+    <script src="assets/scripts/cookie.js"></script>
+    <script src="assets/scripts/main.js"></script>
+
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Document</title>
 </head>
 
-<body>
+<body onload="CheckUserSession()">
     <nav class="navbar navbar-dark bg-primary ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="login.html">
+            <a class="navbar-brand" href="/">
                 <img src="assets/image/logo.jpeg" class="logo" alt="logo" srcset="">
             </a>
             <span class="navbar-text mx-auto title">LAUNDRY</span>
@@ -31,165 +36,64 @@
                 <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="order.html">Menu Utama</a></li>
                     <li><a class="dropdown-item" href="history.html">Tanggal Pesan</a></li>
-                    <li><a class="dropdown-item" href="login.html">Logout</a></li>
+                    <li><a class="dropdown-item" href="/" onclick="Logout()">Logout</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="dev d-flex justify-content-center align-items-center">
+    <!-- <div class="dev d-flex justify-content-center align-items-center">
         <p>Pilih salah satu</p>
         <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
         <label class="btn btn-outline-primary ms-2 me-2" for="option1">Reguler</label>
 
         <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
         <label class="btn btn-outline-primary" for="option2">Express</label>
-    </div>
+    </div> -->
     <div class="container">
-        <div>
-            <h4>Kategori /kg</h4>
-            <hr style="margin-bottom: 50px">
-            <div>
-                <div class="row">
-                    <div class="col">
-                        Baju Biasa 1kg
-                        <div class="col">Rp.10.000</div>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-outline-success"><i data-feather="plus-circle"></i></button>
-                        <button class="btn btn-outline-danger"><i data-feather="minus-circle"></i></button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        Baju Biasa 3kg
-                        <div class="col">Rp.25.000</div>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-outline-success"><i data-feather="plus-circle"></i></button>
-                        <button class="btn btn-outline-danger"><i data-feather="minus-circle"></i></button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        Baju Biasa 5kg
-                        <div class="col">Rp.45.000</div>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-outline-success"><i data-feather="plus-circle"></i></button>
-                        <button class="btn btn-outline-danger"><i data-feather="minus-circle"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <h4>Kategori Atasan</h4>
-            <hr style="margin-bottom: 50px">
-            <div>
-                <div class="row">
-                    <div class="col">
-                        Jas
-                        <div class="col">Rp.25.000</div>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-outline-success"><i data-feather="plus-circle"></i></button>
-                        <button class="btn btn-outline-danger"><i data-feather="minus-circle"></i></button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        Kemeja
-                        <div class="col">Rp.25.000</div>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-outline-success"><i data-feather="plus-circle"></i></button>
-                        <button class="btn btn-outline-danger"><i data-feather="minus-circle"></i></button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        Dress
-                        <div class="col">Rp.30.000</div>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-outline-success"><i data-feather="plus-circle"></i></button>
-                        <button class="btn btn-outline-danger"><i data-feather="minus-circle"></i></button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        Jaket
-                        <div class="col">Rp.30.000</div>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-outline-success"><i data-feather="plus-circle"></i></button>
-                        <button class="btn btn-outline-danger"><i data-feather="minus-circle"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <h4>Kategori Tas</h4>
-            <hr style="margin-bottom: 50px">
-            <div>
-                <div class="row">
-                    <div class="col">
-                        Koper Sedang
-                        <div class="col">Rp.75.000</div>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-outline-success"><i data-feather="plus-circle"></i></button>
-                        <button class="btn btn-outline-danger"><i data-feather="minus-circle"></i></button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        Koper Besar
-                        <div class="col">Rp.90.000</div>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-outline-success"><i data-feather="plus-circle"></i></button>
-                        <button class="btn btn-outline-danger"><i data-feather="minus-circle"></i></button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        Tas Ukuran Sedang
-                        <div class="col">Rp.55.000</div>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-outline-success"><i data-feather="plus-circle"></i></button>
-                        <button class="btn btn-outline-danger"><i data-feather="minus-circle"></i></button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        Tas Ukuran Besar
-                        <div class="col">Rp.65.000</div>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-outline-success"><i data-feather="plus-circle"></i></button>
-                        <button class="btn btn-outline-danger"><i data-feather="minus-circle"></i></button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        Karpet
-                        <div class="col">Rp.70.000</div>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-outline-success"><i data-feather="plus-circle"></i></button>
-                        <button class="btn btn-outline-danger"><i data-feather="minus-circle"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr style="margin-top: 50px;">
+        <script>
+            const container = document.getElementsByClassName('container')[0];
 
-        <div class="d-grid gap-2">
-            <a href="payment.html"><input class="btn btn-primary btn-lg" type="button" value="OK"></a>
-        </div>
+            async function SetupProductList() {
+                const items = await GetAllItems();
 
+                Object.entries(items).forEach(([category, items]) => {
+                    container.innerHTML += `<div>
+                        <h4>Kategori ${category}</h4>
+                        <hr style="margin-bottom: 50px">
+                        <div>
+                            ${
+                                items.map(item => {
+                                    const baseID = item.name.replace(/\s+/g, "-");
+
+                                    return `<div class="row">
+                                        <div class="col">
+                                            ${item.name}
+                                            <div class="col">Rp. ${FormatRupiah(item.price)}</div>
+                                        </div>
+                                        
+                                        <div class="col">
+                                            Jumlah: <b id="${baseID}-count">0</b>&nbsp;&nbsp;&nbsp
+                                            <button onclick="AddCount('${baseID}')" class="btn btn-outline-success">+</button>
+                                            <button onclick="SubCount('${baseID}')" class="btn btn-outline-danger"><b>--</b></button>
+                                        </div>
+                                    </div>`
+                                }).join('')
+                            }
+                        </div>
+                    </div>`;
+                });
+
+                container.innerHTML += `
+                    <hr style="margin-top: 50px;">
+                    <div class="d-grid gap-2">
+                        <a><input onclick="AddToCart()" class="btn btn-primary btn-lg" type="button" value="Bayar"></a>
+                    </div>
+                `;
+            }
+
+            SetupProductList();
+        </script>
     </div>
 
     <script>
